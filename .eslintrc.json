@@ -65,6 +65,7 @@
     "react/jsx-wrap-multilines": "off",
     "react/destructuring-assignment": "off",
     "@typescript-eslint/semi": "off",
-    "react/jsx-indent": "off"
+    "react/jsx-indent": "off",
+    "no-param-reassign": "off"
   }
 }
