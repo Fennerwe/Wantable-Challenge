@@ -1,0 +1,19 @@
+{
+  "name": "cors-skipper",
+  "version": "1.0.0",
+  "description": "Proxy to help with cors issues while developing locally",
+  "main": "index.ts",
+  "author": "Trey Fenner",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.7",
+    "@types/express": "^4.17.7"
+  }
+}
