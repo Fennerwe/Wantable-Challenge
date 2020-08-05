@@ -66,6 +66,7 @@
     "react/destructuring-assignment": "off",
     "@typescript-eslint/semi": "off",
     "react/jsx-indent": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "consistent-return": "off"
   }
 }

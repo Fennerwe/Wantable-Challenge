@@ -29,5 +29,5 @@ export async function apiFetch<T>(
     // error handling
   }
 
-  return result.data
+  return result.data as T
 }
