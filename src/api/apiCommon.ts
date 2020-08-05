@@ -29,5 +29,9 @@ export async function apiFetch<T>(
     // error handling
   }
 
-  return result.data as T
+  if (queryParams['format'] === 'json') {
+    return JSON.parse(result.data)
+  }
+
+  return result.data
 }

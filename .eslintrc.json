@@ -67,6 +67,9 @@
     "@typescript-eslint/semi": "off",
     "react/jsx-indent": "off",
     "no-param-reassign": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "react/jsx-first-prop-new-line": "off",
+    "react/jsx-max-props-per-line": "off",
+    "@typescript-eslint/dot-notation": "off"
   }
 }
