@@ -6,3 +6,5 @@ export const stats: string;
 export const statsHeader: string;
 export const similarArtistsContainer: string;
 export const albumContainer: string;
+export const tagsContainer: string;
+export const tags: string;

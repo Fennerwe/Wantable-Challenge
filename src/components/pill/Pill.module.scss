@@ -1,0 +1,63 @@
+$pink: #ffccf9;
+$purple: #dcd3ff;
+$blue: #afcbff;
+$green: #bffcc6;
+$red: #ffcbc1;
+$yellow: #ffffd1;
+
+.pill {
+  border-radius: 10px;
+  color: #1c1c1c;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 15px;
+}
+
+.pink {
+  background-color: $pink;
+
+  &:hover {
+    background-color: darken($pink, 10);
+  }
+}
+
+.purple {
+  background-color: $purple;
+
+  &:hover {
+    background-color: darken($purple, 10);
+  }
+}
+
+.blue {
+  background-color: $blue;
+
+  &:hover {
+    background-color: darken($blue, 10);
+  }
+}
+
+.green {
+  background-color: $green;
+
+  &:hover {
+    background-color: darken($green, 10);
+  }
+}
+
+.red {
+  background-color: $red;
+
+  &:hover {
+    background-color: darken($red, 10);
+  }
+}
+
+.yellow {
+  background-color: $yellow;
+
+  &:hover {
+    background-color: darken($yellow, 10);
+  }
+}

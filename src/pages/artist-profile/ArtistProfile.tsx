@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { fetchArtistInfo } from '../../api/artists/apiArtists'
 import { ArtistInfoResponse } from '../../api/artists/ArtistInfoResponse'
 import { AlbumCard } from '../../components/album-card/AlbumCard'
+import { Pill } from '../../components/pill/Pill'
 import * as classes from './ArtistProfile.module.scss'
 
 export const ArtistProfile = (props: {
@@ -101,7 +102,19 @@ export const ArtistProfile = (props: {
           </div>
         </div>
       )}
-      {artistInfo && <pre>{JSON.stringify(artistInfo, undefined, 2)}</pre>}
+
+      {!_.isEmpty(artistInfo?.artist?.tags.tag) && (
+        <div className={classes.tagsContainer}>
+          <h2>Tags</h2>
+          <div className={classes.tags}>
+            {_.map(artistInfo.artist.tags.tag, (tag, idx) => (
+              <Pill key={idx} onClick={() => window.open(tag.url, '_blank')}>
+                <span>{_.capitalize(tag.name)}</span>
+              </Pill>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
