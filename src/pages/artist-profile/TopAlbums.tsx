@@ -15,11 +15,13 @@ export const TopAlbums = (props: {
     return null
   }
 
+  const numberToShow = props.numberToShow ?? 10
+
   return (
     <div className={classes.topAlbumsContainer}>
-      <h2>Top 10 Albums</h2>
+      <h2>{`Top ${numberToShow} Albums`}</h2>
       <div className={classes.albumContainer}>
-        {_.map(props.albums.slice(0, props.numberToShow ?? 10), (album) => (
+        {_.map(props.albums.slice(0, numberToShow), (album) => (
           <AlbumCard
             url={
               _.find(album.image, (img) => img.size === 'extralarge')?.['#text']
