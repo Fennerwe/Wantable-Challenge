@@ -1,6 +1,9 @@
-import React from 'react'
 import './App.scss'
-import { Switch, Route, Redirect, HashRouter } from 'react-router-dom'
+
+import React from 'react'
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
+
+import { ArtistProfile } from './pages/artist-profile/ArtistProfile'
 import { Home } from './pages/home/Home'
 
 function App() {
@@ -11,6 +14,7 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+          <Route path="/artist/:artistName" component={ArtistProfile} />
           <Route path="*">
             <Redirect to="/" />
           </Route>

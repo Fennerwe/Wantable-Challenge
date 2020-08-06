@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import * as apiArtists from '../../api/artists/apiArtists'
 import { ArtistSearchResponse } from '../../api/artists/ArtistSearchResponse'
@@ -8,6 +9,8 @@ import { Card } from '../../components/card/Card'
 export const Home = (props: {}) => {
   const [artistName, setArtistName] = useState('')
   const [results, setResults] = useState({} as ArtistSearchResponse)
+
+  const history = useHistory()
 
   return (
     <div>
@@ -26,7 +29,13 @@ export const Home = (props: {}) => {
       />
       {!_.isEmpty(results) &&
         _.map(results.results.artistmatches.artist, (artist, idx) => (
-          <Card key={idx} width="300px">
+          <Card
+            key={idx}
+            width="300px"
+            onClick={() => {
+              history.push(`artist/${artist.name}`)
+            }}
+          >
             <div>
               {artist.name}
               <img
