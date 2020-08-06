@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import * as apiArtists from '../../api/artists/apiArtists'
 import { ArtistSearchResponse } from '../../api/artists/ArtistSearchResponse'
-import { Card } from '../../components/card/Card'
+import * as commonClasses from '../../theme/commonStyles.module.scss'
 import * as classes from './Home.module.scss'
 
 export const Home = (props: {}) => {
@@ -36,25 +36,32 @@ export const Home = (props: {}) => {
       {!_.isEmpty(results) && (
         <div className={classes.cardContainer}>
           {_.map(results.results.artistmatches.artist, (artist, idx) => (
-            <Card
+            <div
+              className={`${classes.albumCard} ${commonClasses.clickable}`}
               key={idx}
-              width="300px"
-              onClick={() => {
-                history.push(`artist/${artist.name}`)
+              onClick={() => history.push(`artist/${artist.name}`)}
+              onKeyPress={(ev) => {
+                if (ev.key === 'Enter') {
+                  history.push(`artist/${artist.name}`)
+                }
               }}
+              role="button"
+              tabIndex={idx}
             >
-              <div>
-                {artist.name}
+              <div className={classes.album}>
+                <div className={classes.artistName}>{artist.name}</div>
+
                 <img
                   src={
-                    _.find(artist.image, (image) => image.size === 'large')?.[
-                      '#text'
-                    ]
+                    _.find(
+                      artist.image,
+                      (image) => image.size === 'extralarge'
+                    )?.['#text']
                   }
                   alt={artist.name}
                 />
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       )}
