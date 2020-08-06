@@ -17,7 +17,7 @@
   "scripts": {
     "start": "run-p sass dev",
     "dev": "BROWSER=none react-scripts start",
-    "sass:": "yarn tsm src/**/*.module.scss -w -n camel -q single -L info",
+    "sass": "yarn tsm 'src/**/*.module.scss' -w -n camel -q single -L info",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
