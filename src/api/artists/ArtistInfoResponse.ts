@@ -11,9 +11,9 @@ export interface ArtistInfoResponse {
         size: ImageSizes
       }
     ]
-    streamable: number
-    ontour: number
-    stats: { listeners: number; playcount: number }
+    streamable: '0' | '1'
+    ontour: '0' | '1'
+    stats: { listeners: string; playcount: string }
     similar: {
       artist: [
         {
