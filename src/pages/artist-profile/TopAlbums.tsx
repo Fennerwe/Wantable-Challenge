@@ -9,6 +9,7 @@ import * as classes from './ArtistProfile.module.scss'
 
 export const TopAlbums = (props: {
   albums: ArtistTopAlbumsResponse['topalbums']['album']
+  numberToShow?: number
 }) => {
   if (_.isEmpty(props.albums)) {
     return null
@@ -18,7 +19,7 @@ export const TopAlbums = (props: {
     <div className={classes.topAlbumsContainer}>
       <h2>Top 10 Albums</h2>
       <div className={classes.albumContainer}>
-        {_.map(props.albums.slice(0, 10), (album) => (
+        {_.map(props.albums.slice(0, props.numberToShow ?? 10), (album) => (
           <AlbumCard
             url={
               _.find(album.image, (img) => img.size === 'extralarge')?.['#text']
