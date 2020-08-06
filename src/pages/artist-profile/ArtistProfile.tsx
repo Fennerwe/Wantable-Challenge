@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import { fetchArtistInfo } from '../../api/artists/apiArtists'
 import { ArtistInfoResponse } from '../../api/artists/ArtistInfoResponse'
+import { AlbumCard } from '../../components/album-card/AlbumCard'
 import * as classes from './ArtistProfile.module.scss'
 
 export const ArtistProfile = (props: {
@@ -47,35 +48,56 @@ export const ArtistProfile = (props: {
               <h3 className={classes.statsHeader}>Stats:</h3>
               <div>
                 <table>
-                  <tr>
-                    <td>On Tour:</td>
-                    <td>{artistInfo.artist.ontour === '1' ? 'YES!' : 'No'}</td>
-                  </tr>
-                  <tr>
-                    <td>Streamable:</td>
-                    <td>
-                      {artistInfo.artist.streamable === '1' ? 'Yes' : 'No'}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Listeners:</td>
-                    <td>
-                      {Number(
-                        artistInfo.artist.stats.listeners
-                      ).toLocaleString()}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Play Count:</td>
-                    <td>
-                      {Number(
-                        artistInfo.artist.stats.playcount
-                      ).toLocaleString()}
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>On Tour:</td>
+                      <td>
+                        {artistInfo.artist.ontour === '1' ? 'YES!' : 'No'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Streamable:</td>
+                      <td>
+                        {artistInfo.artist.streamable === '1' ? 'Yes' : 'No'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Listeners:</td>
+                      <td>
+                        {Number(
+                          artistInfo.artist.stats.listeners
+                        ).toLocaleString()}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Play Count:</td>
+                      <td>
+                        {Number(
+                          artistInfo.artist.stats.playcount
+                        ).toLocaleString()}
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {!_.isEmpty(artistInfo?.artist?.similar?.artist) && (
+        <div className={classes.similarArtistsContainer}>
+          <h1>Similar Artists</h1>
+          <div className={classes.albumContainer}>
+            {_.map(artistInfo.artist.similar.artist, (artist, idx) => (
+              <AlbumCard
+                url={
+                  _.find(artist.image, (img) => img.size === 'mega')?.['#text']
+                }
+                artistName={artist.name}
+                key={idx}
+              />
+            ))}
           </div>
         </div>
       )}

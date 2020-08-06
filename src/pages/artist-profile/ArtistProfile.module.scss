@@ -33,3 +33,15 @@
   text-align: center;
   margin-bottom: 5px;
 }
+
+.similarArtistsContainer {
+  margin-top: 10px;
+
+  .albumContainer {
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
