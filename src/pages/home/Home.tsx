@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
-import * as apiArtists from '../../api/artists/apiArtists'
 import _ from 'lodash'
+import React, { useState } from 'react'
+
+import * as apiArtists from '../../api/artists/apiArtists'
+import { ArtistSearchResponse } from '../../api/artists/ArtistSearchResponse'
 
 export const Home = (props: {}) => {
   const [artistName, setArtistName] = useState('')
-  const [results, setResults] = useState({})
+  const [results, setResults] = useState({} as ArtistSearchResponse)
 
   return (
     <div>
@@ -13,17 +15,28 @@ export const Home = (props: {}) => {
         value={artistName}
         onChange={(ev) => setArtistName(ev.target.value)}
         onKeyPress={async (ev) => {
-          console.log('EVENT KEY:', ev.key, '|', ev.key === 'Enter')
           if (ev.key === 'Enter') {
-            console.log('did this happen')
             const result = await apiArtists.searchArtist(artistName)
-            setResults(result)
+            if (result) {
+              setResults(result)
+            }
           }
         }}
       />
-      {!_.isEmpty(results) && (
-        <pre>{JSON.stringify(results, undefined, 2)}</pre>
-      )}
+      {!_.isEmpty(results) &&
+        _.map(results.results.artistmatches.artist, (artist, idx) => (
+          <div key={idx}>
+            {artist.name}
+            <img
+              src={
+                _.find(artist.image, (image) => image.size === 'medium')?.[
+                  '#text'
+                ]
+              }
+              alt={artist.name}
+            />
+          </div>
+        ))}
     </div>
   )
 }

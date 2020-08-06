@@ -3,7 +3,11 @@
   "extends": ["airbnb-typescript", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "tsconfig.json",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "settings": {
     "import/resolver": {
@@ -26,12 +30,6 @@
       {
         "vars": "all",
         "args": "none"
-      }
-    ],
-    "@typescript-eslint/no-explicit-any": [
-      "error",
-      {
-        "ignoreRestArgs": true
       }
     ],
     "max-len": [

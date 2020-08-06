@@ -3,7 +3,7 @@ import { ArtistSearchResponse } from './ArtistSearchResponse'
 
 export const searchArtist = async (
   artistName: string
-): Promise<ArtistSearchResponse> => {
+): Promise<ArtistSearchResponse | undefined> => {
   const result = await apiFetch<ArtistSearchResponse>(
     'http://ws.audioscrobbler.com/2.0/',
     { method: 'GET' },
@@ -13,4 +13,6 @@ export const searchArtist = async (
   if (result) {
     return result
   }
+
+  return undefined
 }
