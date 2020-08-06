@@ -1,3 +1,5 @@
+import { ImageSizes } from './ImageSizes'
+
 export interface ArtistSearchResponse {
   results: {
     'opensearch:Query': {
@@ -19,7 +21,7 @@ export interface ArtistSearchResponse {
           streamable: string
           image: {
             '#text': string
-            size: 'small' | 'medium' | 'large' | 'extralarge' | 'mega'
+            size: ImageSizes
           }[]
         }
       ]
