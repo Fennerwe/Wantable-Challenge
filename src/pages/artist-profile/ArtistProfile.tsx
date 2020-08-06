@@ -1,8 +1,14 @@
 import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
 
-import { fetchArtistInfo } from '../../api/artists/apiArtists'
+import {
+  fetchArtistInfo,
+  fetchArtistTopTracks,
+} from '../../api/artists/apiArtists'
 import { ArtistInfoResponse } from '../../api/artists/ArtistInfoResponse'
+import {
+  ArtistTopAlbumsResponse,
+} from '../../api/artists/ArtistTopAlbumsResponse'
 import { AlbumCard } from '../../components/album-card/AlbumCard'
 import { Pill } from '../../components/pill/Pill'
 import * as classes from './ArtistProfile.module.scss'
@@ -11,10 +17,16 @@ export const ArtistProfile = (props: {
   match: { params: { artistName: string } }
 }) => {
   const [artistInfo, setArtistInfo] = useState({} as ArtistInfoResponse)
+  const [topTracks, setTopTracks] = useState({} as ArtistTopAlbumsResponse)
 
   useEffect(() => {
-    fetchArtistInfo(decodeURI(props.match.params.artistName)).then((val) => {
+    const artistName = decodeURI(props.match.params.artistName)
+    fetchArtistInfo(artistName).then((val) => {
       setArtistInfo(val)
+    })
+
+    fetchArtistTopTracks(artistName).then((val) => {
+      setTopTracks(val)
     })
   }, [props.match.params.artistName])
 
@@ -86,16 +98,34 @@ export const ArtistProfile = (props: {
         </div>
       )}
 
+      {!_.isEmpty(topTracks?.topalbums?.album) && (
+        <div className={classes.topAlbumsContainer}>
+          <h2>Top 10 Albums</h2>
+          <div className={classes.albumContainer}>
+            {_.map(topTracks.topalbums.album.slice(0, 10), (album) => (
+              <AlbumCard
+                url={
+                  _.find(album.image, (img) => img.size === 'extralarge')?.[
+                    '#text'
+                  ]
+                }
+                cardTitle={album.name}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       {!_.isEmpty(artistInfo?.artist?.similar?.artist) && (
         <div className={classes.similarArtistsContainer}>
-          <h1>Similar Artists</h1>
+          <h2>Similar Artists</h2>
           <div className={classes.albumContainer}>
             {_.map(artistInfo.artist.similar.artist, (artist, idx) => (
               <AlbumCard
                 url={
                   _.find(artist.image, (img) => img.size === 'mega')?.['#text']
                 }
-                artistName={artist.name}
+                cardTitle={artist.name}
                 key={idx}
               />
             ))}

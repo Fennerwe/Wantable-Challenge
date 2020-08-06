@@ -4,6 +4,7 @@ export const bio: string;
 export const picAndStats: string;
 export const stats: string;
 export const statsHeader: string;
+export const topAlbumsContainer: string;
 export const similarArtistsContainer: string;
 export const albumContainer: string;
 export const tagsContainer: string;

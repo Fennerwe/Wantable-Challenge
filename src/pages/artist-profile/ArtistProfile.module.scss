@@ -33,16 +33,20 @@
   margin-bottom: 5px;
 }
 
+.topAlbumsContainer {
+  margin-top: 10px;
+}
+
 .similarArtistsContainer {
   margin-top: 10px;
+}
 
-  .albumContainer {
-    display: flex;
-    margin-top: 10px;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
+.albumContainer {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .tagsContainer {

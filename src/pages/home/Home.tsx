@@ -39,7 +39,7 @@ export const Home = (props: {}) => {
                   '#text'
                 ]
               }
-              artistName={artist.name}
+              cardTitle={artist.name}
             />
           ))}
         </div>

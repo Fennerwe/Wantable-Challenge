@@ -1,6 +1,7 @@
 import { apiFetch } from '../apiCommon'
 import { ArtistInfoResponse } from './ArtistInfoResponse'
 import { ArtistSearchResponse } from './ArtistSearchResponse'
+import { ArtistTopAlbumsResponse } from './ArtistTopAlbumsResponse'
 
 const baseUrl = 'http://ws.audioscrobbler.com/2.0/'
 
@@ -23,6 +24,18 @@ export const fetchArtistInfo = async (
     baseUrl,
     { method: 'GET' },
     { method: 'artist.getinfo', artist: artistName, format: 'json' }
+  )
+
+  return result
+}
+
+export const fetchArtistTopTracks = async (
+  artistName: string
+): Promise<ArtistTopAlbumsResponse> => {
+  const result = await apiFetch<ArtistTopAlbumsResponse>(
+    baseUrl,
+    { method: 'GET' },
+    { method: 'artist.gettopalbums', artist: artistName, format: 'json' }
   )
 
   return result
