@@ -57,3 +57,26 @@
     flex-direction: row;
   }
 }
+
+.tracksTable {
+  border-collapse: collapse;
+  .header {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .nameCol {
+    width: 400px;
+    text-align: left;
+  }
+
+  .standardCol {
+    width: 150px;
+    text-align: left;
+  }
+
+  .striped {
+    .row:nth-child(odd) {
+      background-color: lighten(#1c1c1c, 5);
+    }
+  }
+}

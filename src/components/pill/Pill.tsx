@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React, { ReactElement } from 'react'
 
 import * as commonClasses from '../../theme/commonStyles.module.scss'

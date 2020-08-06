@@ -13,12 +13,11 @@ import {
 import {
   ArtistTopTracksResponse,
 } from '../../api/artists/ArtistTopTracksResponse'
-import { AlbumCard } from '../../components/album-card/AlbumCard'
-import { Pill } from '../../components/pill/Pill'
 import * as classes from './ArtistProfile.module.scss'
 import { ArtistTags } from './ArtistTags'
 import { SimilarArtists } from './SimilarArtists'
 import { TopAlbums } from './TopAlbums'
+import { TopTracks } from './TopTracks'
 
 export const ArtistProfile = (props: {
   match: { params: { artistName: string } }
@@ -111,6 +110,7 @@ export const ArtistProfile = (props: {
       )}
 
       <TopAlbums albums={topAlbums?.topalbums?.album} />
+      <TopTracks tracks={topTracks?.toptracks?.track} />
       <SimilarArtists artists={artistInfo?.artist?.similar?.artist} />
       <ArtistTags tags={artistInfo?.artist?.tags?.tag} />
     </div>
