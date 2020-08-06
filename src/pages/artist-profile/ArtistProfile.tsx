@@ -26,8 +26,9 @@ export const ArtistProfile = (props: {
   const [topAlbums, setTopAlbums] = useState({} as ArtistTopAlbumsResponse)
   const [topTracks, setTopTracks] = useState({} as ArtistTopTracksResponse)
 
+  const artistName = decodeURI(props.match.params.artistName)
+
   useEffect(() => {
-    const artistName = decodeURI(props.match.params.artistName)
     fetchArtistInfo(artistName).then((val) => {
       setArtistInfo(val)
     })
@@ -46,6 +47,7 @@ export const ArtistProfile = (props: {
       {!_.isEmpty(artistInfo) && (
         <div className={classes.infoContainer}>
           <div className={classes.bio}>
+            <h1>{artistName}</h1>
             <h2>Bio</h2>
             <div
               // the bio content contains links to last.fm, so we need to set the html
