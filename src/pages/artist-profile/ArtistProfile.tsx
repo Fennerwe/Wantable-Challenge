@@ -73,7 +73,7 @@ export const ArtistProfile = (props: {
             <div className={classes.stats}>
               <h3 className={classes.statsHeader}>Stats:</h3>
               <div>
-                <table>
+                <table className={classes.statsTable}>
                   <tbody>
                     <tr>
                       <td>On Tour:</td>
