@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 import * as apiArtists from '../../api/artists/apiArtists'
 import { ArtistSearchResponse } from '../../api/artists/ArtistSearchResponse'
+import { Card } from '../../components/card/Card'
 
 export const Home = (props: {}) => {
   const [artistName, setArtistName] = useState('')
@@ -25,17 +26,19 @@ export const Home = (props: {}) => {
       />
       {!_.isEmpty(results) &&
         _.map(results.results.artistmatches.artist, (artist, idx) => (
-          <div key={idx}>
-            {artist.name}
-            <img
-              src={
-                _.find(artist.image, (image) => image.size === 'medium')?.[
-                  '#text'
-                ]
-              }
-              alt={artist.name}
-            />
-          </div>
+          <Card key={idx} width="300px">
+            <div>
+              {artist.name}
+              <img
+                src={
+                  _.find(artist.image, (image) => image.size === 'large')?.[
+                    '#text'
+                  ]
+                }
+                alt={artist.name}
+              />
+            </div>
+          </Card>
         ))}
     </div>
   )

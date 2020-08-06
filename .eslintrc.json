@@ -68,6 +68,7 @@
     "consistent-return": "off",
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-max-props-per-line": "off",
-    "@typescript-eslint/dot-notation": "off"
+    "@typescript-eslint/dot-notation": "off",
+    "react/require-default-props": "off"
   }
 }
