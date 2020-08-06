@@ -3,26 +3,38 @@ import React, { useEffect, useState } from 'react'
 
 import {
   fetchArtistInfo,
+  fetchArtistTopAlbums,
   fetchArtistTopTracks,
 } from '../../api/artists/apiArtists'
 import { ArtistInfoResponse } from '../../api/artists/ArtistInfoResponse'
 import {
   ArtistTopAlbumsResponse,
 } from '../../api/artists/ArtistTopAlbumsResponse'
+import {
+  ArtistTopTracksResponse,
+} from '../../api/artists/ArtistTopTracksResponse'
 import { AlbumCard } from '../../components/album-card/AlbumCard'
 import { Pill } from '../../components/pill/Pill'
 import * as classes from './ArtistProfile.module.scss'
+import { ArtistTags } from './ArtistTags'
+import { SimilarArtists } from './SimilarArtists'
+import { TopAlbums } from './TopAlbums'
 
 export const ArtistProfile = (props: {
   match: { params: { artistName: string } }
 }) => {
   const [artistInfo, setArtistInfo] = useState({} as ArtistInfoResponse)
-  const [topTracks, setTopTracks] = useState({} as ArtistTopAlbumsResponse)
+  const [topAlbums, setTopAlbums] = useState({} as ArtistTopAlbumsResponse)
+  const [topTracks, setTopTracks] = useState({} as ArtistTopTracksResponse)
 
   useEffect(() => {
     const artistName = decodeURI(props.match.params.artistName)
     fetchArtistInfo(artistName).then((val) => {
       setArtistInfo(val)
+    })
+
+    fetchArtistTopAlbums(artistName).then((val) => {
+      setTopAlbums(val)
     })
 
     fetchArtistTopTracks(artistName).then((val) => {
@@ -98,53 +110,9 @@ export const ArtistProfile = (props: {
         </div>
       )}
 
-      {!_.isEmpty(topTracks?.topalbums?.album) && (
-        <div className={classes.topAlbumsContainer}>
-          <h2>Top 10 Albums</h2>
-          <div className={classes.albumContainer}>
-            {_.map(topTracks.topalbums.album.slice(0, 10), (album) => (
-              <AlbumCard
-                url={
-                  _.find(album.image, (img) => img.size === 'extralarge')?.[
-                    '#text'
-                  ]
-                }
-                cardTitle={album.name}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {!_.isEmpty(artistInfo?.artist?.similar?.artist) && (
-        <div className={classes.similarArtistsContainer}>
-          <h2>Similar Artists</h2>
-          <div className={classes.albumContainer}>
-            {_.map(artistInfo.artist.similar.artist, (artist, idx) => (
-              <AlbumCard
-                url={
-                  _.find(artist.image, (img) => img.size === 'mega')?.['#text']
-                }
-                cardTitle={artist.name}
-                key={idx}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {!_.isEmpty(artistInfo?.artist?.tags.tag) && (
-        <div className={classes.tagsContainer}>
-          <h2>Tags</h2>
-          <div className={classes.tags}>
-            {_.map(artistInfo.artist.tags.tag, (tag, idx) => (
-              <Pill key={idx} onClick={() => window.open(tag.url, '_blank')}>
-                <span>{_.capitalize(tag.name)}</span>
-              </Pill>
-            ))}
-          </div>
-        </div>
-      )}
+      <TopAlbums albums={topAlbums?.topalbums?.album} />
+      <SimilarArtists artists={artistInfo?.artist?.similar?.artist} />
+      <ArtistTags tags={artistInfo?.artist?.tags?.tag} />
     </div>
   )
 }
