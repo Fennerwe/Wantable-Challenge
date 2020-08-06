@@ -39,10 +39,10 @@ export const Home = (props: {}) => {
             <div
               className={`${classes.albumCard} ${commonClasses.clickable}`}
               key={idx}
-              onClick={() => history.push(`artist/${artist.name}`)}
+              onClick={() => history.push(`artist/${encodeURI(artist.name)}`)}
               onKeyPress={(ev) => {
                 if (ev.key === 'Enter') {
-                  history.push(`artist/${artist.name}`)
+                  history.push(`artist/${encodeURI(artist.name)}`)
                 }
               }}
               role="button"

@@ -11,16 +11,13 @@ export const ArtistProfile = (props: {
   const [artistInfo, setArtistInfo] = useState({} as ArtistInfoResponse)
 
   useEffect(() => {
-    fetchArtistInfo(props.match.params.artistName).then((val) => {
+    fetchArtistInfo(decodeURI(props.match.params.artistName)).then((val) => {
       setArtistInfo(val)
     })
   })
 
   return (
     <div>
-      <button type="button" onClick={() => history.push('/')}>
-        Back to Search
-      </button>
       {artistInfo && <pre>{JSON.stringify(artistInfo, undefined, 2)}</pre>}
     </div>
   )
