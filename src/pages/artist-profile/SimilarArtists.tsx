@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React from 'react'
 
 import { ArtistInfoResponse } from '../../api/artists/ArtistInfoResponse'
-import { AlbumCard } from '../../components/album-card/AlbumCard'
+import { ArtistCard } from '../../components/artist-card/ArtistCard'
 import * as classes from './ArtistProfile.module.scss'
 
 export const SimilarArtists = (props: {
@@ -17,9 +17,9 @@ export const SimilarArtists = (props: {
       <h2>Similar Artists</h2>
       <div className={classes.albumContainer}>
         {_.map(props.artists, (artist, idx) => (
-          <AlbumCard
+          <ArtistCard
             url={_.find(artist.image, (img) => img.size === 'mega')?.['#text']}
-            cardTitle={artist.name}
+            artistName={artist.name}
             key={idx}
           />
         ))}

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 import * as apiArtists from '../../api/artists/apiArtists'
 import { ArtistSearchResponse } from '../../api/artists/ArtistSearchResponse'
-import { AlbumCard } from '../../components/album-card/AlbumCard'
+import { ArtistCard } from '../../components/artist-card/ArtistCard'
 import * as classes from './Home.module.scss'
 
 export const Home = (props: {}) => {
@@ -33,13 +33,14 @@ export const Home = (props: {}) => {
       {!_.isEmpty(results) && (
         <div className={classes.cardContainer}>
           {_.map(results.results.artistmatches.artist, (artist, idx) => (
-            <AlbumCard
+            <ArtistCard
+              key={idx}
               url={
                 _.find(artist.image, (image) => image.size === 'extralarge')?.[
                   '#text'
                 ]
               }
-              cardTitle={artist.name}
+              artistName={artist.name}
             />
           ))}
         </div>

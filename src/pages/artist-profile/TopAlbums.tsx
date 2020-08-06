@@ -24,10 +24,11 @@ export const TopAlbums = (props: {
         {props.albums.slice(0, numberToShow).map((album) => (
           <AlbumCard
             key={album.url}
-            url={
+            imgUrl={
               _.find(album.image, (img) => img.size === 'extralarge')?.['#text']
             }
-            cardTitle={album.name}
+            albumName={album.name}
+            albumUrl={album.url}
           />
         ))}
       </div>
