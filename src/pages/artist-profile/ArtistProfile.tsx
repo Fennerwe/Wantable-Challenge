@@ -14,7 +14,7 @@ export const ArtistProfile = (props: {
     fetchArtistInfo(props.match.params.artistName).then((val) => {
       setArtistInfo(val)
     })
-  }, [])
+  })
 
   return (
     <div>
