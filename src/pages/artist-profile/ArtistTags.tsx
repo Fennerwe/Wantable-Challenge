@@ -18,7 +18,7 @@ export const ArtistTags = (props: {
       <div className={classes.tags}>
         {_.map(props.tags, (tag, idx) => (
           <Pill key={idx} onClick={() => window.open(tag.url, '_blank')}>
-            <span>{_.capitalize(tag.name)}</span>
+            <span>{_.startCase(tag.name)}</span>
           </Pill>
         ))}
       </div>
