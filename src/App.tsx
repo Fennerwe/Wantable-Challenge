@@ -9,8 +9,8 @@ import { Home } from './pages/home/Home'
 
 function App() {
   return (
-    <Layout>
-      <HashRouter>
+    <HashRouter>
+      <Layout>
         <Switch>
           <Route exact path="/">
             <Home />
@@ -20,8 +20,8 @@ function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
-      </HashRouter>
-    </Layout>
+      </Layout>
+    </HashRouter>
   )
 }
 
