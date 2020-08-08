@@ -10,7 +10,7 @@ import * as classes from './FavoritesList.module.scss'
 export const FavoritesList = (props: {}) => {
   const history = useHistory()
   const favorites = useContext(favoritesStore)
-  const [isListVisible, setIsListVisible] = useState(true)
+  const [isListVisible, setIsListVisible] = useState(false)
 
   return (
     <div
