@@ -18,20 +18,31 @@
 
 $cellPadding: 5px;
 
+.tableBody {
+  .row {
+    &:nth-child(odd) {
+      background-color: darken(lightgray, 5);
+    }
+    &:hover {
+      background-color: darken(lightgray, 10);
+    }
+  }
+}
 .row {
+  .cell:last-child {
+    padding-left: $cellPadding;
+    padding-right: 15px;
+  }
+
   .cell:first-child {
     padding-right: $cellPadding;
+    padding-left: 15px;
   }
 
   .cell {
     padding-left: $cellPadding;
     padding-right: $cellPadding;
-
-    word-wrap: none;
-  }
-
-  .cell:last-child {
-    padding-left: $cellPadding;
+    white-space: nowrap;
   }
 }
 

@@ -69,6 +69,7 @@
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-max-props-per-line": "off",
     "@typescript-eslint/dot-notation": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "react/jsx-curly-newline": "off"
   }
 }

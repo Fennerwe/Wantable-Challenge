@@ -1,11 +1,14 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { favoritesStore } from '../../../state/favorites/FavoritesProvider'
+import * as commonClasses from '../../../theme/commonStyles.module.scss'
 import * as classes from './FavoritesList.module.scss'
 
 export const FavoritesList = (props: {}) => {
+  const history = useHistory()
   const favorites = useContext(favoritesStore)
   const [isListVisible, setIsListVisible] = useState(false)
 
@@ -28,23 +31,39 @@ export const FavoritesList = (props: {}) => {
                   <td className={classes.cell}> </td>
                 </tr>
               </thead>
-              <tbody>
-                {favorites.state.favorites.map((fav) => (
+              <tbody className={classes.tableBody}>
+                {favorites.state.favorites.map((fav, idx) => (
                   <tr key={fav.artistName} className={classes.row}>
-                    <td className={classes.cell}>{fav.artistName}</td>
+                    <td
+                      className={`${classes.cell} ${commonClasses.clickable}`}
+                    >
+                      <div
+                        tabIndex={idx}
+                        role="button"
+                        onClick={() =>
+                          history.push(`/artist/${encodeURI(fav.artistName)}`)
+                        }
+                        onKeyPress={(ev) => {
+                          if (ev.key === 'Enter') {
+                            history.push(`/artist/${encodeURI(fav.artistName)}`)
+                          }
+                        }}
+                      >
+                        {fav.artistName}
+                      </div>
+                    </td>
                     <td className={classes.cell}>
-                      {fav.dateAdded.toISOString().split('T')[0]}
+                      {fav.dateAdded.split('T')[0]}
                     </td>
                     <td className={`${classes.cell} ${classes.deleteIcon}`}>
                       <FontAwesomeIcon
+                        className={commonClasses.clickable}
                         icon={faTrashAlt}
-                        onClick={
-                          () =>
-                            favorites.dispatch({
-                              type: 'REMOVE',
-                              payload: fav.artistName,
-                            })
-                          // eslint-disable-next-line react/jsx-curly-newline
+                        onClick={() =>
+                          favorites.dispatch({
+                            type: 'REMOVE',
+                            payload: fav.artistName,
+                          })
                         }
                       />
                     </td>

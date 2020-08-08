@@ -7,7 +7,7 @@ const STORAGE_KEY = 'favoritesState'
 
 interface FavoritesInfo {
   artistName: string
-  dateAdded: Date
+  dateAdded: string // date in IsoString format so it can be saved to local storage
 }
 
 interface FavoritesState {
@@ -43,7 +43,7 @@ const reducer = (
       const favorites = state.favorites.slice()
       favorites.push({
         artistName: action.payload,
-        dateAdded: new Date(),
+        dateAdded: new Date().toISOString(),
       })
       return {
         favorites: _.sortedUniqBy(
@@ -54,11 +54,13 @@ const reducer = (
     }
     case 'REMOVE': {
       const favorites = state.favorites.slice()
+
+      _.remove(
+        favorites,
+        (favoriteInfo) => favoriteInfo.artistName === action.payload
+      )
       return {
-        favorites: _.remove(
-          favorites,
-          (favoriteInfo) => favoriteInfo.artistName === action.payload
-        ),
+        favorites,
       }
     }
     default:
