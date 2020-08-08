@@ -1,4 +1,4 @@
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
@@ -19,7 +19,9 @@ export const FavoritesList = (props: {}) => {
       onMouseLeave={() => setIsListVisible(false)}
       onBlur={() => setIsListVisible(false)}
     >
-      <button type="button">Favorites</button>
+      <div className={classes.favorites}>
+        Favorites <FontAwesomeIcon icon={faAngleDown} />
+      </div>
       <div className={classes.listContainer}>
         {isListVisible && (
           <div className={classes.list}>

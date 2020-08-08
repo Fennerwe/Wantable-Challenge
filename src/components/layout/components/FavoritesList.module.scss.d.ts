@@ -1,5 +1,6 @@
 export const listContainer: string;
 export const list: string;
+export const favorites: string;
 export const listTable: string;
 export const tableBody: string;
 export const row: string;
