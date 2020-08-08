@@ -16,3 +16,4 @@ export const nameCol: string;
 export const standardCol: string;
 export const striped: string;
 export const row: string;
+export const favorite: string;

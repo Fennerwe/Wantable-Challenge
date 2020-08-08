@@ -1,5 +1,8 @@
+import { faStar as faStar_R } from '@fortawesome/free-regular-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import _ from 'lodash'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import {
   fetchArtistInfo,
@@ -13,6 +16,8 @@ import {
 import {
   ArtistTopTracksResponse,
 } from '../../api/artists/ArtistTopTracksResponse'
+import { favoritesStore } from '../../state/favorites/FavoritesProvider'
+import * as commonClasses from '../../theme/commonStyles.module.scss'
 import * as classes from './ArtistProfile.module.scss'
 import { ArtistTags } from './ArtistTags'
 import { SimilarArtists } from './SimilarArtists'
@@ -25,6 +30,8 @@ export const ArtistProfile = (props: {
   const [artistInfo, setArtistInfo] = useState({} as ArtistInfoResponse)
   const [topAlbums, setTopAlbums] = useState({} as ArtistTopAlbumsResponse)
   const [topTracks, setTopTracks] = useState({} as ArtistTopTracksResponse)
+
+  const favorites = useContext(favoritesStore)
 
   const artistName = decodeURI(props.match.params.artistName)
 
@@ -105,6 +112,43 @@ export const ArtistProfile = (props: {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+              <div className={classes.favorite}>
+                {
+                  _.find(
+                    favorites.state.favorites,
+                    (fav) => fav.artistName === artistName
+                  ) ? (
+                    /* eslint-disable @typescript-eslint/indent, react/jsx-curly-newline */
+                    <div>
+                      Unfavorite:{' '}
+                      <FontAwesomeIcon
+                        className={commonClasses.clickable}
+                        icon={faStar}
+                        onClick={() =>
+                          favorites.dispatch({
+                            type: 'REMOVE',
+                            payload: artistName,
+                          })
+                        }
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      Favorite:{' '}
+                      <FontAwesomeIcon
+                        className={commonClasses.clickable}
+                        icon={faStar_R}
+                        onClick={() =>
+                          favorites.dispatch({
+                            type: 'ADD',
+                            payload: artistName,
+                          })
+                        }
+                      />
+                    </div>
+                  ) /* eslint-enable @typescript-eslint/indent, react/jsx-curly-newline */
+                }
               </div>
             </div>
           </div>
