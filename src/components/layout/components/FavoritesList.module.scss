@@ -1,0 +1,40 @@
+.listContainer {
+  position: relative;
+}
+
+.list {
+  font-size: 18px;
+  background-color: lightgray;
+  color: black;
+  height: 300px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.listTable {
+  border-collapse: collapse;
+}
+
+$cellPadding: 5px;
+
+.row {
+  .cell:first-child {
+    padding-right: $cellPadding;
+  }
+
+  .cell {
+    padding-left: $cellPadding;
+    padding-right: $cellPadding;
+
+    word-wrap: none;
+  }
+
+  .cell:last-child {
+    padding-left: $cellPadding;
+  }
+}
+
+.deleteIcon {
+  color: red;
+}
