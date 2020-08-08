@@ -31,7 +31,7 @@ export const TopTracks = (props: {
         </thead>
         <tbody className={classes.striped}>
           {props.tracks.slice(0, numberToShow).map((track) => (
-            <tr className={classes.row} key={track.mbid}>
+            <tr className={classes.row} key={track.name}>
               <td>{track.name}</td>
               <td>{Number(track.playcount).toLocaleString()}</td>
               <td>{Number(track.listeners).toLocaleString()}</td>
