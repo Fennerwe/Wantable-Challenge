@@ -2,18 +2,22 @@
   position: relative;
 }
 
+$listColor: #353535;
+
 .list {
   font-size: 18px;
-  background-color: lightgray;
-  color: black;
-  height: 300px;
+  background-color: $listColor;
   position: absolute;
+  color: #f7f7f7;
   top: 0px;
   right: 0px;
+  min-height: 100px;
+  box-shadow: 3px 3px 10px black;
 }
 
 .listTable {
   border-collapse: collapse;
+  margin-top: 10px;
 }
 
 $cellPadding: 5px;
@@ -21,10 +25,10 @@ $cellPadding: 5px;
 .tableBody {
   .row {
     &:nth-child(odd) {
-      background-color: darken(lightgray, 5);
+      background-color: darken($listColor, 5);
     }
     &:hover {
-      background-color: darken(lightgray, 10);
+      background-color: darken($listColor, 10);
     }
   }
 }
@@ -48,4 +52,20 @@ $cellPadding: 5px;
 
 .deleteIcon {
   color: red;
+}
+
+.noFavoritesContainer {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+
+  .noFavorites {
+    margin-top: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    white-space: nowrap;
+  }
 }
