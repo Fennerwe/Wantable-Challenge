@@ -40,6 +40,8 @@ It might also be useful to have some pills under the search bar for "recent sear
 
 Another useful feature: moving the search bar up into the header when not on the main page.
 
+Also adding some pagination or "load more" functionality to the various places where I only show a certain number of results from the api call(s).
+
 ## Final Thoughts
 
 This was a fun project; it was the first time I've set up a CRA project from scratch using their lint recommendations and there was a lot of fiddling around getting things in place.
