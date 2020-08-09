@@ -10,7 +10,7 @@ interface FavoritesInfo {
   dateAdded: string // date in IsoString format so it can be saved to local storage
 }
 
-interface FavoritesState {
+export interface FavoritesState {
   favorites: FavoritesInfo[]
 }
 
@@ -33,7 +33,7 @@ const favoritesValue: FavoritesProviderValue = {
   dispatch: (action) => {},
 }
 
-const reducer = (
+export const reducer = (
   state: FavoritesState,
   action: FavoritesActions
 ): FavoritesState => {
