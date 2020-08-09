@@ -1,9 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 
-import {
-  ArtistTopAlbumsResponse,
-} from '../../api/artists/ArtistTopAlbumsResponse'
+import { ArtistTopAlbumsResponse } from '../../api/artists/ArtistTopAlbumsResponse'
 import { AlbumCard } from '../../components/album-card/AlbumCard'
 import * as classes from './ArtistProfile.module.scss'
 

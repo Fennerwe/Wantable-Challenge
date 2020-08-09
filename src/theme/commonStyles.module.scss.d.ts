@@ -1,1 +1,1 @@
-export const clickable: string;
+export const clickable: string

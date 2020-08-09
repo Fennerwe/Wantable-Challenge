@@ -1,9 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 
-import {
-  ArtistTopTracksResponse,
-} from '../../api/artists/ArtistTopTracksResponse'
+import { ArtistTopTracksResponse } from '../../api/artists/ArtistTopTracksResponse'
 import * as classes from './ArtistProfile.module.scss'
 
 export const TopTracks = (props: {

@@ -10,12 +10,8 @@ import {
   fetchArtistTopTracks,
 } from '../../api/artists/apiArtists'
 import { ArtistInfoResponse } from '../../api/artists/ArtistInfoResponse'
-import {
-  ArtistTopAlbumsResponse,
-} from '../../api/artists/ArtistTopAlbumsResponse'
-import {
-  ArtistTopTracksResponse,
-} from '../../api/artists/ArtistTopTracksResponse'
+import { ArtistTopAlbumsResponse } from '../../api/artists/ArtistTopAlbumsResponse'
+import { ArtistTopTracksResponse } from '../../api/artists/ArtistTopTracksResponse'
 import { favoritesStore } from '../../state/favorites/FavoritesProvider'
 import * as commonClasses from '../../theme/commonStyles.module.scss'
 import * as classes from './ArtistProfile.module.scss'
