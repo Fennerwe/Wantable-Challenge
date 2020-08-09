@@ -14,7 +14,7 @@ export const ArtistCard = (props: { url?: string; artistName: string }) => {
         document.documentElement.scrollTop = 0
       }}
       imgUrl={props.url}
-      cardTitle={props.artistName}
+      title={props.artistName}
     />
   )
 }

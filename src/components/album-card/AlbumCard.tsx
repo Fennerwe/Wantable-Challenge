@@ -11,7 +11,7 @@ export const AlbumCard = (props: {
     <Card
       onClick={() => window.open(props.albumUrl, '_blank')}
       imgUrl={props.imgUrl}
-      cardTitle={props.albumName}
+      title={props.albumName}
     />
   )
 }

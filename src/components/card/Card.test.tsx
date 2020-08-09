@@ -5,12 +5,12 @@ import { Card } from './Card'
 
 describe('Card', () => {
   it('renders without crashing', () => {
-    render(<Card cardTitle="Test" />)
+    render(<Card title="Test" />)
   })
 
   it('fire the onclick event if passed in', () => {
     const mockFn = jest.fn()
-    const el = render(<Card cardTitle="Test" onClick={mockFn} />)
+    const el = render(<Card title="Test" onClick={mockFn} />)
 
     const card = el.queryByRole('button')
     if (card) {
@@ -22,7 +22,7 @@ describe('Card', () => {
 
   it('shows the image if a url is passed in', () => {
     const testTitle = 'TestTitle'
-    const el = render(<Card cardTitle={testTitle} imgUrl="testImgUrl" />)
+    const el = render(<Card title={testTitle} imgUrl="testImgUrl" />)
 
     const img = el.queryByAltText(testTitle)
     const noImageFound = el.queryByText('No Image Found')
@@ -33,7 +33,7 @@ describe('Card', () => {
 
   it('shows "No Image Found" if no url is passed in', () => {
     const testTitle = 'TestTitle'
-    const el = render(<Card cardTitle={testTitle} />)
+    const el = render(<Card title={testTitle} />)
 
     const img = el.queryByAltText(testTitle)
     const noImageFound = el.queryByText('No Image Found')
