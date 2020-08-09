@@ -5,21 +5,19 @@ import qs from 'qs'
 import { config } from './apiConfig'
 
 interface FetchOptions {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE'
+  method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
   data?: Object
 }
 
 export async function apiFetch<T>(
   url: string,
-  options: FetchOptions,
+  options?: FetchOptions,
   queryParams?: any
 ): Promise<T> {
   _.defaults(options, { method: 'GET' })
-  _.defaults(queryParams, { api_key: config.apiKey })
+  const qp = _.defaults({}, queryParams, { api_key: config.apiKey })
 
-  if (queryParams) {
-    url += `?${qs.stringify(queryParams, { indices: false })}`
-  }
+  url += `?${qs.stringify(qp, { indices: false })}`
 
   const result = await axios({
     url,
@@ -27,7 +25,8 @@ export async function apiFetch<T>(
   })
 
   if (result.status !== 200) {
-    // error handling
+    // error handling, would probably create a toast or something on the page
+    // that could display a 'An error occurred' message if the api request failed
   }
 
   return result.data
