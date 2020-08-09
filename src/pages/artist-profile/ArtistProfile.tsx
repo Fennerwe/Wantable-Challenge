@@ -47,7 +47,7 @@ export const ArtistProfile = (props: {
     fetchArtistTopTracks(artistName).then((val) => {
       setTopTracks(val)
     })
-  }, [props.match.params.artistName])
+  }, [artistName])
 
   return (
     <div className={classes.container}>
