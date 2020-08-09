@@ -1,44 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Wantable Coding Challenge Project
 
-## Available Scripts
+I used yarn for this, but I tested with npm as well and it seems to work fine
 
-In the project directory, you can run:
+To start:
 
-### `npm start`
+`yarn start` or `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To run tests:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+`yarn test` or `npm test`
 
-### `npm test`
+## Using the app
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Type a name in the search bar on the home page and press Enter
 
-### `npm run build`
+Click an artist
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Browse their stuff. The albums, tracks, and tags all link to their respective last.fm pages. The similar artists go to the artist profile for that artist inside the app.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Clicking the favorite/unfavorite start under the blank profile picture (I have no idea why every profile picture is blank, maybe you have to use the actual user authentication stuff to get those) to add the artist to the favorites list (or remove them).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can hover over the favorites dropdown thing in the top right of the page to see the current list of favorites. Clicking the artist name will take you to their profile. Clicking the trashcan will remove that artist from the favorites list.
 
-### `npm run eject`
+Clicking the "logo" is the easiest way to get back to the home page.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Next Steps
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I didn't get as much testing in place as I would if this was something in production. I tried to put some examples of the kinds of tests I would write around:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. A component
+2. A utils file (the api stuff)
+3. State management where possible (notably the reducer function)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+I was working on getting some additional testing around the Context API stuff but it was proving troublesome and I feel like I've spent enough time on this now. I would also like to have some bigger testing around some of the bigger components like the `ArtistProfile` and the various smaller components used inside it, but if I started writing the tests for that I'd probably be spending another 2-3 hours being thorough.
 
-## Learn More
+I would also eventually replace the search bar on the main page with an async typeahead to help find artists; it might be difficult (read: non-performant) with the way last.fm's api returns results, but I think it would be useful functionality.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+It might also be useful to have some pills under the search bar for "recent searches" to make it easy to re-search for something you previously searched for. That would be another piece of persistent state so a new Context would be in order.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Another useful feature: moving the search bar up into the header when not on the main page.
+
+## Final Thoughts
+
+This was a fun project; it was the first time I've set up a CRA project from scratch using their lint recommendations and there was a lot of fiddling around getting things in place.
