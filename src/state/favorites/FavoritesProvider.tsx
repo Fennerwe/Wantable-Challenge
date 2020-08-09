@@ -46,7 +46,7 @@ const reducer = (
         dateAdded: new Date().toISOString(),
       })
       return {
-        favorites: _.sortedUniqBy(
+        favorites: _.uniqBy(
           favorites,
           (favoriteInfo) => favoriteInfo.artistName
         ),
